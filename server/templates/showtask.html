@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="ui segment">
+        <table class="ui compact celled definition table">
+            <thead class="full-width">
+            <tr>
+                <th>状态</th>
+                <th>任务ID</th>
+                <th>主机名</th>
+                <th>开始时间</th>
+                <th>结束时间</th>
+                <th>分析结果</th>
+                <th>详情</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if resdata %}
+                {% for record in resdata %}
+                    <tr>
+                        <td>finished</td>
+                        <td id="taskid">{{ record['taskid'] }}</td>
+                        <td>{{ record['host'] }}</td>
+                        <td>{{ record['startime'] }}</td>
+                        <td>{{ record['finishtime'] }}</td>
+                        <td>
+                            {% if record['type'] %}
+                                <a class="ui white image label">
+                                    <img src="../static/img/detail_pic/danger.svg">
+                                    <div class="ui red basic label detail">异常</div>
+                                    {% for type in record['type'] %}
+                                        <div class="ui red basic label detail">{{ type }}</div>
+                                    {% endfor %}
+                                </a>
+                            {% else %}
+                                {% if record['detect'] ==0 %}
+                                    <a class="ui white image label">
+                                        <img src="../static/img/detail_pic/right.svg">
+                                        <div class="ui green basic label detail">正常</div>
+                                    </a>
+                                {% elif record['detect'] ==1 %}
+                                    <a class="ui white image label">
+                                        <img src="../static/img/detail_pic/quest.svg">
+                                        <div class="ui yellow basic label detail">异常</div>
+                                        <div class="ui yellow basic label detail">未知类型</div>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+
+                        <td class="collapsing">
+                            {#      <a href='/result/{{ record['taskid'] }}'>#}
+                            <a href='/detail_1?taskid={{ record['taskid'] }}'>
+                                <div class="ui basic compact icon button">
+                                    <i class="zoom icon"></i>
+                                </div>
+                            </a>
+                            <a href="{{ url_for('static', filename='PDFReport/192_168_56_163.pdf') }}">
+                                <div class="ui basic compact icon button">
+                                    <i class="download icon"></i>
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <div class="ui small ok modal">
+        <div class="header">
+            Done!
+        </div>
+        <div class="actions">
+            <div class="ui positive right labeled icon button">
+                Yes
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+{% endblock %}

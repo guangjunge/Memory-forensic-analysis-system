@@ -1,0 +1,44 @@
+aniso8601==9.0.1
+bcrypt==4.0.1
+brotlipy==0.7.0
+certifi @ file:///C:/b/abs_85o_6fm0se/croot/certifi_1671487778835/work/certifi
+cffi @ file:///C:/b/abs_49n3v2hyhr/croot/cffi_1670423218144/work
+charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654/work
+chartkick==1.0.1
+click==8.0.3
+colorama==0.4.6
+cryptography @ file:///C:/b/abs_8ecplyc3n2/croot/cryptography_1677533105000/work
+et-xmlfile==1.1.0
+Flask==2.2.5
+Flask-Bcrypt==1.0.1
+Flask-Login==0.6.2
+Flask-RESTful==0.3.10
+Flask-SQLAlchemy==3.0.5
+Flask-WTF==1.1.1
+greenlet==3.0.0
+idna @ file:///C:/b/abs_bdhbebrioa/croot/idna_1666125572046/work
+importlib-metadata==6.7.0
+itsdangerous @ file:///tmp/build/80754af9/itsdangerous_1621432558163/work
+Jinja2 @ file:///C:/b/abs_7cdis66kl9/croot/jinja2_1666908141852/work
+MarkupSafe @ file:///C:/ci/markupsafe_1654508076077/work
+mistune==3.0.2
+nbconvert==7.6.0
+numpy==1.21.6
+openpyxl==3.1.2
+pandas==1.3.5
+pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
+pyOpenSSL @ file:///C:/b/abs_552w85x1jz/croot/pyopenssl_1677607703691/work
+PySocks @ file:///C:/ci/pysocks_1594394709107/work
+python-dateutil==2.8.2
+pytz==2023.3.post1
+requests @ file:///C:/ci/requests_1657735288441/work
+six==1.16.0
+SQLAlchemy==2.0.21
+tinycss2==1.2.1
+typing_extensions==4.7.1
+urllib3 @ file:///C:/b/abs_9bcwxczrvm/croot/urllib3_1673575521331/work
+Werkzeug==2.2.3
+win-inet-pton @ file:///C:/ci/win_inet_pton_1605306165655/work
+wincertstore==0.2
+WTForms==3.0.1
+zipp==3.15.0

@@ -1,0 +1,81 @@
+{
+  "id": "1",
+  "isStudent": "192.168.56.100",
+  "dump_name": "192.168.56.100_2023-12-03 16:25:00.dump",
+  "analysis_time": "2023-12-03 16:25:00",
+  "is_normal": true,
+  "family_category": "Trojan_Corebot",
+  "basic_info": {
+    "检测时间": "2023-12-03 16:25:00",
+    "检测方": "远程内存取证智能分析系统"
+  },
+  "basic_info": {
+    "内存系统信息": {
+      "可能的操作系统版本": "Win2008SP1x86, Win7SP1x64, Win7SP0x64",
+      "DTB目录表基址": "1601536",
+      "KDBG信息": "2023-04-14_15:07:56",
+      "处理器核数": "2",
+      "Windows服务包版本": "1",
+      "镜像本地日期和时间": "2023/12/3"
+    }
+  },
+  "detailed_analysis": {
+    "恶意进程信息": {
+      "恶意进程命令行信息": {
+        "PID": [
+          "3488",
+          "2180",
+          "488",
+          "1836",
+          "2672",
+          "2808",
+          "2428"
+        ],
+        "进程名": [
+          "firefox.exe",
+          "iexplore.exe",
+          "iexplore.exe",
+          "firefox.exe",
+          "firefox.exe",
+          "firefox.exe",
+          "firefox.exe",
+          "firefox.exe"
+        ],
+        "命令行参数": [
+          "\"C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe\" -contentproc --channel=\"1196.20.167375406\\430506970\" -parentBuildID 20230403170909 -prefsHandle 1928 -prefMapHandle 1916 -prefsLen 8036 -prefMapSize 216283 -appdir \"C:\\Program Files (x86)\\Mozilla Firefox\\browser\" - 1196 \"\\\\.\\pipe\\gecko-crash-server-pipe.1196\" 1824 rdd"
+        ]
+      },
+      "DLL信息": {
+        "PID": [
+          "3488",
+          "2180",
+          "488",
+          "1836",
+          "2672",
+          "2808",
+          "2428"
+        ],
+        "进程名": [
+          "firefox.exe",
+          "iexplore.exe",
+          "iexplore.exe",
+          "firefox.exe",
+          "firefox.exe",
+          "firefox.exe",
+          "firefox.exe",
+          "firefox.exe"
+        ],
+        "加载次数": [
+          "\"C:"
+        ],
+        "加载次数": [
+          "\"C:"
+        ]
+      }
+    }
+  },
+  "overall_result": {
+  },
+  "detailed_analysis": false,
+  "isError": false
+}

@@ -1,0 +1,896 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if taskdic %}
+        {% if taskdic['type'] %}
+            <div class="ui top negative icon message" id="headpage">
+                <i class="attention icon"></i>
+                <div class="content">
+                    <b>{{ taskdic['host'] }}_{{ taskdic['finishtime'] }}</b>
+                    <a class="ui white image label">
+                        <img src="../static/img/detail_pic/danger.svg">
+                        {% for type in taskdic['type'] %}
+                            <div class="ui red basic label detail">{{ type }}</div>
+                        {% endfor %}
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {% if taskdic['detect'] ==0 %}
+                <div class="ui top green icon message" id="headpage">
+                    <i class="attention icon"></i>
+                    <div class="content">
+
+                        <b>{{ taskdic['host'] }}_{{ taskdic['finishtime'] }}</b>
+                        <a class="ui white image label">
+                            <img src="../static/img/detail_pic/right.svg">
+                            <div class="ui green basic label detail">正常</div>
+                        </a>
+                    </div>
+                </div>
+            {% elif taskdic['detect'] ==1 %}
+                <div class="ui top yellow icon message" id="headpage">
+                    <i class="attention icon"></i>
+                    <div class="content">
+
+                        <b>{{ taskdic['host'] }}_{{ taskdic['finishtime'] }}</b>
+                        <a class="ui white image label">
+                            <img src="../static/img/detail_pic/quest.svg">
+                            <div class="ui yellow basic label detail">异常</div>
+                            <div class="ui yellow basic label detail">未知类型</div>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+
+        {% endif %}
+
+        <div class="ui segment">
+            {#    导航窗口#}
+            <div class="ui sticky">
+                <div class="ui right dropdown"><i class="align left icon"></i>导航窗口<i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a class="item" href="#headpage">首页</a>
+                        <a class="item" href="#baseinfo">基本信息</a>
+                        <div class="item">
+                            <i class="dropdown icon"></i>
+                            分析内容
+                            <div class="menu">
+                                <a class="item" href="#meminfo">内存系统信息</a>
+                                <a class="item" href="#psinfo">恶意进程信息</a>
+                                <a class="item" href="#funcloadinfo">加载函数信息</a>
+                                <a class="item" href="#nodeinfo">恶意节点信息</a>
+                                <a class="item" href="#pstreeimg">PS树状图</a>
+                                <a class="item" href="#injecttableinfo">关键注册表信息</a>
+                                <a class="item" href="#netbehaviinfo">网络行为信息</a>
+                            </div>
+                        </div>
+                        <a class="item" href="#resultinfo">综合分析</a>
+                    </div>
+                </div>
+            </div>
+            <div class="ui horizontal divider " id="baseinfo">
+                <div class="ui huge header"><i class="info icon"></i>基本信息</div>
+            </div>
+
+            <div class="list" id="container">
+                <table class="ui celled table center aligned" id="baseinfo_table">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div id="font-set"><b>受理时间</b></div>
+                        </td>
+                        <td>{{ taskdic['startime'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="font-set"><b>待检材料</b></div>
+                        </td>
+                        <td>{{ taskdic['host'] }}_{{ taskdic['finishtime'] }}.dump</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="font-set"><b>检测时间</b></div>
+                        </td>
+                        <td>{{ taskdic['finishtime'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="font-set"><b>检测方</b></div>
+                        </td>
+                        <td>远程内存取证智能分析系统</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            {#父标题#}
+            <div class="ui horizontal divider " id="anainfo">
+                <div class="ui huge header"><i class="info icon"></i>分析内容</div>
+            </div>
+
+            {#子标题#}
+            <div class="ui top blue icon message" id="meminfo">
+                <div class="ui large header"><i class="info icon"></i>内存系统信息</div>
+            </div>
+            {#内容#}
+            <div class="list" id="container">
+                <table class="ui table center aligned" id="baseinfo_table">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div id="font-set"><b>可能的操作系统版本</b></div>
+                        </td>
+                        <td>Win2008SP1x86, Win7SP1x64, Win7SP0x64</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="font-set"><b>DTB目录表基址</b></div>
+                        </td>
+                        <td>1601536</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="font-set"><b>KDBG信息</b></div>
+                        </td>
+                        <td>2023-04-14_15:07:56</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="font-set"><b>处理器核数</b></div>
+                        </td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="font-set"><b>Windows服务包版本</b></div>
+                        </td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="font-set"><b>受理时间</b></div>
+                        </td>
+                        <td>{{ taskdic['startime'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="font-set"><b>镜像本地日期和时间</b></div>
+                        </td>
+                        <td>{{ taskdic['startime'] }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            {#子标题#}
+            <div class="ui top  blue icon message" id="psinfo">
+
+                <div class="ui large header"><i class="info icon"></i>{% if taskdic['type'] %}恶意{% endif %}进程信息</div>
+
+            </div>
+            {#标题下的描述#}
+            <div class="ui raised segment">
+                <p>提供本产品扫描出的进程信息。具体包括进程命令行信息、进程DLL加载信息、DLL对应函数加载信息以及VAD节点信息</p>
+            </div>
+            {#二级子标题#}
+            <div class="ui top  teal icon message">
+                <div class="ui middle header"><i class="info icon"></i>{% if taskdic['type'] %}恶意{% endif %}进程命令行信息
+                </div>
+            </div>
+            {#标题下的描述#}
+            <div class="ui raised segment">
+                <p>提供本产品检测出的进程的进程ID、进程名和命令行加载信息</p>
+            </div>
+            <div class="list" id="container">
+                <table class="ui celled table center aligned" id="baseinfo_table">
+                    <tbody>
+                    <thead>
+                    <tr>
+                        <th>
+                            <div id="font-set"><b>PID</b></div>
+                        </th>
+                        <th>
+                            <div id="font-set"><b>进程名</b></div>
+                        </th>
+                        <th>
+                            <div id="font-set"><b>命令行参数</b></div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>3488</td>
+                        <td>firefox.exe</td>
+                        <td>"C:\Program Files (x86)\Mozilla Firefox\firefox.exe" -contentproc
+                            --channel="1196.20.167375406\430506970" -parentBuildID 20230403170909 -prefsHandle 1928
+                            -prefMapHandle 1916 -prefsLen 8036 -prefMapSize 216283 -appdir "C:\Program Files
+                            (x86)\Mozilla
+                            Firefox\browser" - 1196 "\\.\pipe\gecko-crash-server-pipe.1196" 1824 rdd
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2180</td>
+                        <td>iexplore.exe</td>
+                        <td>"C:\Program Files (x86)\Internet Explorer\iexplore.exe"</td>
+                    </tr>
+                    <tr>
+                        <td>488</td>
+                        <td>iexplore.exe</td>
+                        <td>"C:\Program Files (x86)\Internet Explorer\iexplore.exe" SCODEF:2180 CREDAT:79873</td>
+                    </tr>
+                    <tr>
+                        <td>1196</td>
+                        <td>firefox.exe</td>
+                        <td>"C:\Program Files (x86)\Mozilla Firefox\firefox.exe" -first-startup</td>
+                    </tr>
+                    <tr>
+                        <td>1836</td>
+                        <td>firefox.exe</td>
+                        <td>"C:\Program Files (x86)\Mozilla Firefox\firefox.exe" -contentproc
+                            --channel="1196.13.1053559141\1653985308" -childID 2 -isForBrowser -prefsHandle 2124
+                            -prefMapHandle 2120 -prefsLen 3486 -prefMapSize 216283 -parentBuildID 20230403170909 -appdir
+                            "C:\Program Files (x86)\Mozilla Firefox\browser" - 1196
+                            "\\.\pipe\gecko-crash-server-pipe.1196"
+                            2136 tab
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2672</td>
+                        <td>firefox.exe</td>
+                        <td>"C:\Program Files (x86)\Mozilla Firefox\firefox.exe" -contentproc
+                            --channel="1196.52.995347841\1174536823" -childID 7 -isForBrowser -prefsHandle 4752
+                            -prefMapHandle 4712 -prefsLen 20398 -prefMapSize 216283 -parentBuildID 20230403170909
+                            -appdir
+                            "C:\Program Files (x86)\Mozilla Firefox\browser" - 1196
+                            "\\.\pipe\gecko-crash-server-pipe.1196"
+                            4748 tab
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2808</td>
+                        <td>firefox.exe</td>
+                        <td>"C:\Program Files (x86)\Mozilla Firefox\firefox.exe" -contentproc
+                            --channel="1196.0.1728630941\770701979" -parentBuildID 20230403170909 -prefsHandle 1424
+                            -prefMapHandle 1288 -prefsLen 1 -prefMapSize 216283 -appdir "C:\Program Files (x86)\Mozilla
+                            Firefox\browser" - 1196 "\\.\pipe\gecko-crash-server-pipe.1196" 1524 gpu
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2428</td>
+                        <td>firefox.exe</td>
+                        <td>"C:\Program Files (x86)\Mozilla Firefox\firefox.exe" -contentproc
+                            --channel="1196.45.826126589\1310194129" -childID 6 -isForBrowser -prefsHandle 4552
+                            -prefMapHandle 4608 -prefsLen 20398 -prefMapSize 216283 -parentBuildID 20230403170909
+                            -appdir
+                            "C:\Program Files (x86)\Mozilla Firefox\browser" - 1196
+                            "\\.\pipe\gecko-crash-server-pipe.1196"
+                            4532 tab
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+            {#二级子标题#}
+            <div class="ui top  teal icon message">
+                <div class="ui middle header"><i class="info icon"></i>DLL信息</div>
+            </div>
+            {#标题下的描述#}
+            <div class="ui raised segment">
+                <p>该部分提供进程加载的动态链接库信息，包括进程ID、进程名、文件大小、DLL加载名称及加载次数</p>
+            </div>
+            <div class="list" id="container">
+                <table class="ui celled table center aligned" id="baseinfo_table">
+                    <tbody>
+                    <thead>
+                    <tr>
+                        <th>
+                            <div id="font-set"><b>PID</b></div>
+                        </th>
+                        <th>
+                            <div id="font-set"><b>进程名</b></div>
+                        </th>
+                        <th>
+                            <div id="font-set"><b>加载次数</b></div>
+                        </th>
+                        <th>
+                            <div id="font-set"><b>文件大小</b></div>
+                        </th>
+                        <th>
+                            <div id="font-set"><b>DLL名称</b></div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>3488</td>
+                        <td>firefox.exe</td>
+                        <td>65535</td>
+                        <td>532480</td>
+                        <td>C:\Program</td>
+                    </tr>
+                    <tr>
+                        <td>3488</td>
+                        <td>firefox.exe</td>
+                        <td>65535</td>
+                        <td>1740800</td>
+                        <td>C:\Windows\SYSTEM32\ntdll.dll</td>
+                    </tr>
+                    <tr>
+                        <td>3488</td>
+                        <td>firefox.exe</td>
+                        <td>3</td>
+                        <td>258048</td>
+                        <td>C:\Windows\SYSTEM32\wow64.dll</td>
+                    </tr>
+                    <tr>
+                        <td>3488</td>
+                        <td>firefox.exe</td>
+                        <td>1</td>
+                        <td>376832</td>
+                        <td>C:\Windows\SYSTEM32\wow64win.dll</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="ui top blue icon message" id="funcloadinfo">
+                <div class="ui large header"><i class="info icon"></i>加载函数信息</div>
+            </div>
+            <div class="list" id="container">
+                <div class="ui stacked segment">
+                    <p>进程PID: 2428 进程名: firefox.exe</p>
+                    <p>[加载DLL名称：mozglue.dll]</p>
+                    <p>| - ??2@YAPAXI@Z</p>
+                    <p>| - ??3@YAXPAX@Z</p>
+                    <p>| - ??3@YAXPAXI@Z</p>
+                    <p>| - ??_U@YAPAXI@Z</p>
+                    <p>| - ??_V@YAXPAX@Z</p>
+                    <p>| - ?BeginProcessRuntimeInit@detail@mscom@mozilla@@YAAA_NXZ</p>
+                    <p>| - ?DllBlocklist_Initialize@@YAXI@Z</p>
+                    <p>| - ?DllBlocklist_SetBasicDllServices@@YAXPAVDllServicesBase@detail@glue@mozilla@@@Z</p>
+                </div>
+            </div>
+
+            <div class="ui top blue icon message" id="nodeinfo">
+                <div class="ui large header"><i class="info icon"></i>{% if taskdic['type'] %}恶意{% endif %}节点信息</div>
+            </div>
+            <div class="list" id="nodeinfo-container">
+                <div class="ui" id="node-text">
+                    <p>进程 3488 - VAD节点地址 0xba0000</p>
+                    <p>00000000: 4D 5A 90 00 03 00 00 00 04 00 00 00 FF FF 00 00 MZ..............</p>
+                    <p>00000010: B8 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00 ........@.......</p>
+                    <p>00000020: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................</p>
+                    <p>00000030: 00 00 00 00 00 00 00 00 00 00 00 00 E8 00 00 00 ................</p>
+                    <p>00000040: 0E 1F BA 0E 00 B4 09 CD 21 B8 01 4C CD 21 54 68 ........!..L.!Th</p>
+                    <p>00000050: 69 73 20 70 72 6F 67 72 61 6D 20 63 61 6E 6E 6F is program canno</p>
+                    <p>00000060: 74 20 62 65 20 72 75 6E 20 69 6E 20 44 4F 53 20 t be run in DOS</p>
+                    <p>00000070: 6D 6F 64 65 2E 0D 0D 0A 24 00 00 00 00 00 00 00 mode....$.......</p>
+                    <p>00000080: 7E 87 63 89 3A E6 0D DA 3A E6 0D DA 3A E6 0D DA ~.c.:...:...:...</p>
+                    <p>00000090: D2 F9 09 DA 38 E6 0D DA B9 FA 03 DA 3B E6 0D DA ....8.......;...</p>
+                    <p>000000A0: 1D 20 60 DA 39 E6 0D DA 1D 20 76 DA 2F E6 0D DA . `.9.... v./...</p>
+                    <p>000000B0: 3A E6 0C DA F1 E6 0D DA 24 B4 89 DA 04 E6 0D DA :.......$.......</p>
+                    <p>000000C0: 24 B4 9C DA 3B E6 0D DA 52 69 63 68 3A E6 0D DA $...;...Rich:...</p>
+                    <p>000000D0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................</p>
+                    <p>000000E0: 00 00 00 00 00 00 00 00 50 45 00 00 4C 01 04 00 ........PE..L...</p>
+                    <p>000000F0: 3F 9B D1 4D 00 00 00 00 00 00 00 00 E0 00 02 01 ?..M............</p>
+                </div>
+                <div class="ui" id="node-text">
+                    <p>进程 2180 - VAD节点地址 0x4630000</p>
+                    <p>00000000: 4D 5A 90 00 03 00 00 00 04 00 00 00 FF FF 00 00 MZ..............</p>
+                    <p>00000010: B8 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00 ........@.......</p>
+                    <p>00000020: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................</p>
+                    <p>00000030: 00 00 00 00 00 00 00 00 00 00 00 00 E8 00 00 00 ................</p>
+                    <p>00000040: 0E 1F BA 0E 00 B4 09 CD 21 B8 01 4C CD 21 54 68 ........!..L.!Th</p>
+                    <p>00000050: 69 73 20 70 72 6F 67 72 61 6D 20 63 61 6E 6E 6F is program canno</p>
+                    <p>00000060: 74 20 62 65 20 72 75 6E 20 69 6E 20 44 4F 53 20 t be run in DOS</p>
+                    <p>00000070: 6D 6F 64 65 2E 0D 0D 0A 24 00 00 00 00 00 00 00 mode....$.......</p>
+                    <p>00000080: 7E 87 63 89 3A E6 0D DA 3A E6 0D DA 3A E6 0D DA ~.c.:...:...:...</p>
+                    <p>00000090: D2 F9 09 DA 38 E6 0D DA B9 FA 03 DA 3B E6 0D DA ....8.......;...</p>
+                    <p>000000A0: 1D 20 60 DA 39 E6 0D DA 1D 20 76 DA 2F E6 0D DA . `.9.... v./...</p>
+                    <p>000000B0: 3A E6 0C DA F1 E6 0D DA 24 B4 89 DA 04 E6 0D DA :.......$.......</p>
+                    <p>000000C0: 24 B4 9C DA 3B E6 0D DA 52 69 63 68 3A E6 0D DA $...;...Rich:...</p>
+                    <p>000000D0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................</p>
+                    <p>000000E0: 00 00 00 00 00 00 00 00 50 45 00 00 4C 01 04 00 ........PE..L...</p>
+                    <p>000000F0: 3F 9B D1 4D 00 00 00 00 00 00 00 00 E0 00 02 01 ?..M............</p>
+                </div>
+                <div class="ui" id="node-text">
+                    <p>进程 488 - VAD节点地址 0x41f0000</p>
+                    <p>00000000: 4D 5A 90 00 03 00 00 00 04 00 00 00 FF FF 00 00 MZ..............</p>
+                    <p>00000010: B8 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00 ........@.......</p>
+                    <p>00000020: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................</p>
+                    <p>00000030: 00 00 00 00 00 00 00 00 00 00 00 00 E8 00 00 00 ................</p>
+                    <p>00000040: 0E 1F BA 0E 00 B4 09 CD 21 B8 01 4C CD 21 54 68 ........!..L.!Th</p>
+                    <p>00000050: 69 73 20 70 72 6F 67 72 61 6D 20 63 61 6E 6E 6F is program canno</p>
+                    <p>00000060: 74 20 62 65 20 72 75 6E 20 69 6E 20 44 4F 53 20 t be run in DOS</p>
+                    <p>00000070: 6D 6F 64 65 2E 0D 0D 0A 24 00 00 00 00 00 00 00 mode....$.......</p>
+                    <p>00000080: 7E 87 63 89 3A E6 0D DA 3A E6 0D DA 3A E6 0D DA ~.c.:...:...:...</p>
+                    <p>00000090: D2 F9 09 DA 38 E6 0D DA B9 FA 03 DA 3B E6 0D DA ....8.......;...</p>
+                    <p>000000A0: 1D 20 60 DA 39 E6 0D DA 1D 20 76 DA 2F E6 0D DA . `.9.... v./...</p>
+                    <p>000000B0: 3A E6 0C DA F1 E6 0D DA 24 B4 89 DA 04 E6 0D DA :.......$.......</p>
+                    <p>000000C0: 24 B4 9C DA 3B E6 0D DA 52 69 63 68 3A E6 0D DA $...;...Rich:...</p>
+                    <p>000000D0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................</p>
+                    <p>000000E0: 00 00 00 00 00 00 00 00 50 45 00 00 4C 01 04 00 ........PE..L...</p>
+                    <p>000000F0: 3F 9B D1 4D 00 00 00 00 00 00 00 00 E0 00 02 01 ?..M............</p>
+                </div>
+                <div class="ui" id="node-text">
+                    <p>进程 1836 - VAD节点地址 0x7600000</p>
+                    <p>00000000: 4D 5A 90 00 03 00 00 00 04 00 00 00 FF FF 00 00 MZ..............</p>
+                    <p>00000010: B8 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00 ........@.......</p>
+                    <p>00000020: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................</p>
+                    <p>00000030: 00 00 00 00 00 00 00 00 00 00 00 00 E8 00 00 00 ................</p>
+                    <p>00000040: 0E 1F BA 0E 00 B4 09 CD 21 B8 01 4C CD 21 54 68 ........!..L.!Th</p>
+                    <p>00000050: 69 73 20 70 72 6F 67 72 61 6D 20 63 61 6E 6E 6F is program canno</p>
+                    <p>00000060: 74 20 62 65 20 72 75 6E 20 69 6E 20 44 4F 53 20 t be run in DOS</p>
+                    <p>00000070: 6D 6F 64 65 2E 0D 0D 0A 24 00 00 00 00 00 00 00 mode....$.......</p>
+                    <p>00000080: 7E 87 63 89 3A E6 0D DA 3A E6 0D DA 3A E6 0D DA ~.c.:...:...:...</p>
+                    <p>00000090: D2 F9 09 DA 38 E6 0D DA B9 FA 03 DA 3B E6 0D DA ....8.......;...</p>
+                    <p>000000A0: 1D 20 60 DA 39 E6 0D DA 1D 20 76 DA 2F E6 0D DA . `.9.... v./...</p>
+                    <p>000000B0: 3A E6 0C DA F1 E6 0D DA 24 B4 89 DA 04 E6 0D DA :.......$.......</p>
+                    <p>000000C0: 24 B4 9C DA 3B E6 0D DA 52 69 63 68 3A E6 0D DA $...;...Rich:...</p>
+                    <p>000000D0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................</p>
+                    <p>000000E0: 00 00 00 00 00 00 00 00 50 45 00 00 4C 01 04 00 ........PE..L...</p>
+                    <p>000000F0: 3F 9B D1 4D 00 00 00 00 00 00 00 00 E0 00 02 01 ?..M............</p>
+                </div>
+                <div class="ui" id="node-text">
+                    <p>进程 1196 - VAD节点地址 0xcda0000</p>
+                    <p>00000000: 4D 5A 90 00 03 00 00 00 04 00 00 00 FF FF 00 00 MZ..............</p>
+                    <p>00000010: B8 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00 ........@.......</p>
+                    <p>00000020: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................</p>
+                    <p>00000030: 00 00 00 00 00 00 00 00 00 00 00 00 E8 00 00 00 ................</p>
+                    <p>00000040: 0E 1F BA 0E 00 B4 09 CD 21 B8 01 4C CD 21 54 68 ........!..L.!Th</p>
+                    <p>00000050: 69 73 20 70 72 6F 67 72 61 6D 20 63 61 6E 6E 6F is program canno</p>
+                    <p>00000060: 74 20 62 65 20 72 75 6E 20 69 6E 20 44 4F 53 20 t be run in DOS</p>
+                    <p>00000070: 6D 6F 64 65 2E 0D 0D 0A 24 00 00 00 00 00 00 00 mode....$.......</p>
+                    <p>00000080: 7E 87 63 89 3A E6 0D DA 3A E6 0D DA 3A E6 0D DA ~.c.:...:...:...</p>
+                    <p>00000090: D2 F9 09 DA 38 E6 0D DA B9 FA 03 DA 3B E6 0D DA ....8.......;...</p>
+                    <p>000000A0: 1D 20 60 DA 39 E6 0D DA 1D 20 76 DA 2F E6 0D DA . `.9.... v./...</p>
+                    <p>000000B0: 3A E6 0C DA F1 E6 0D DA 24 B4 89 DA 04 E6 0D DA :.......$.......</p>
+                    <p>000000C0: 24 B4 9C DA 3B E6 0D DA 52 69 63 68 3A E6 0D DA $...;...Rich:...</p>
+                    <p>000000D0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................</p>
+                    <p>000000E0: 00 00 00 00 00 00 00 00 50 45 00 00 4C 01 04 00 ........PE..L...</p>
+                    <p>000000F0: 3F 9B D1 4D 00 00 00 00 00 00 00 00 E0 00 02 01 ?..M............</p>
+                </div>
+                <div class="ui" id="node-text">
+                    <p>进程 2672 - VAD节点地址 0xb410000</p>
+                    <p>00000000: 4D 5A 90 00 03 00 00 00 04 00 00 00 FF FF 00 00 MZ..............</p>
+                    <p>00000010: B8 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00 ........@.......</p>
+                    <p>00000020: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................</p>
+                    <p>00000030: 00 00 00 00 00 00 00 00 00 00 00 00 E8 00 00 00 ................</p>
+                    <p>00000040: 0E 1F BA 0E 00 B4 09 CD 21 B8 01 4C CD 21 54 68 ........!..L.!Th</p>
+                    <p>00000050: 69 73 20 70 72 6F 67 72 61 6D 20 63 61 6E 6E 6F is program canno</p>
+                    <p>00000060: 74 20 62 65 20 72 75 6E 20 69 6E 20 44 4F 53 20 t be run in DOS</p>
+                    <p>00000070: 6D 6F 64 65 2E 0D 0D 0A 24 00 00 00 00 00 00 00 mode....$.......</p>
+                    <p>00000080: 7E 87 63 89 3A E6 0D DA 3A E6 0D DA 3A E6 0D DA ~.c.:...:...:...</p>
+                    <p>00000090: D2 F9 09 DA 38 E6 0D DA B9 FA 03 DA 3B E6 0D DA ....8.......;...</p>
+                    <p>000000A0: 1D 20 60 DA 39 E6 0D DA 1D 20 76 DA 2F E6 0D DA . `.9.... v./...</p>
+                    <p>000000B0: 3A E6 0C DA F1 E6 0D DA 24 B4 89 DA 04 E6 0D DA :.......$.......</p>
+                    <p>000000C0: 24 B4 9C DA 3B E6 0D DA 52 69 63 68 3A E6 0D DA $...;...Rich:...</p>
+                    <p>000000D0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................</p>
+                    <p>000000E0: 00 00 00 00 00 00 00 00 50 45 00 00 4C 01 04 00 ........PE..L...</p>
+                    <p>000000F0: 3F 9B D1 4D 00 00 00 00 00 00 00 00 E0 00 02 01 ?..M............</p>
+                </div>
+                <div class="ui" id="node-text">
+                    <p>进程 2808 - VAD节点地址 0xc20000</p>
+                    <p>00000000: 4D 5A 90 00 03 00 00 00 04 00 00 00 FF FF 00 00 MZ..............</p>
+                    <p>00000010: B8 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00 ........@.......</p>
+                    <p>00000020: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................</p>
+                    <p>00000030: 00 00 00 00 00 00 00 00 00 00 00 00 E8 00 00 00 ................</p>
+                    <p>00000040: 0E 1F BA 0E 00 B4 09 CD 21 B8 01 4C CD 21 54 68 ........!..L.!Th</p>
+                    <p>00000050: 69 73 20 70 72 6F 67 72 61 6D 20 63 61 6E 6E 6F is program canno</p>
+                    <p>00000060: 74 20 62 65 20 72 75 6E 20 69 6E 20 44 4F 53 20 t be run in DOS</p>
+                    <p>00000070: 6D 6F 64 65 2E 0D 0D 0A 24 00 00 00 00 00 00 00 mode....$.......</p>
+                    <p>00000080: 7E 87 63 89 3A E6 0D DA 3A E6 0D DA 3A E6 0D DA ~.c.:...:...:...</p>
+                    <p>00000090: D2 F9 09 DA 38 E6 0D DA B9 FA 03 DA 3B E6 0D DA ....8.......;...</p>
+                    <p>000000A0: 1D 20 60 DA 39 E6 0D DA 1D 20 76 DA 2F E6 0D DA . `.9.... v./...</p>
+                    <p>000000B0: 3A E6 0C DA F1 E6 0D DA 24 B4 89 DA 04 E6 0D DA :.......$.......</p>
+                    <p>000000C0: 24 B4 9C DA 3B E6 0D DA 52 69 63 68 3A E6 0D DA $...;...Rich:...</p>
+                    <p>000000D0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................</p>
+                    <p>000000E0: 00 00 00 00 00 00 00 00 50 45 00 00 4C 01 04 00 ........PE..L...</p>
+                    <p>000000F0: 3F 9B D1 4D 00 00 00 00 00 00 00 00 E0 00 02 01 ?..M............</p>
+                </div>
+                <div class="ui" id="node-text">
+                    <p>进程 2428 - VAD节点地址 0x8080000</p>
+                    <p>00000000: 4D 5A 90 00 03 00 00 00 04 00 00 00 FF FF 00 00 MZ..............</p>
+                    <p>00000010: B8 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00 ........@.......</p>
+                    <p>00000020: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................</p>
+                    <p>00000030: 00 00 00 00 00 00 00 00 00 00 00 00 E8 00 00 00 ................</p>
+                    <p>00000040: 0E 1F BA 0E 00 B4 09 CD 21 B8 01 4C CD 21 54 68 ........!..L.!Th</p>
+                    <p>00000050: 69 73 20 70 72 6F 67 72 61 6D 20 63 61 6E 6E 6F is program canno</p>
+                    <p>00000060: 74 20 62 65 20 72 75 6E 20 69 6E 20 44 4F 53 20 t be run in DOS</p>
+                    <p>00000070: 6D 6F 64 65 2E 0D 0D 0A 24 00 00 00 00 00 00 00 mode....$.......</p>
+                    <p>00000080: 7E 87 63 89 3A E6 0D DA 3A E6 0D DA 3A E6 0D DA ~.c.:...:...:...</p>
+                    <p>00000090: D2 F9 09 DA 38 E6 0D DA B9 FA 03 DA 3B E6 0D DA ....8.......;...</p>
+                    <p>000000A0: 1D 20 60 DA 39 E6 0D DA 1D 20 76 DA 2F E6 0D DA . `.9.... v./...</p>
+                    <p>000000B0: 3A E6 0C DA F1 E6 0D DA 24 B4 89 DA 04 E6 0D DA :.......$.......</p>
+                    <p>000000C0: 24 B4 9C DA 3B E6 0D DA 52 69 63 68 3A E6 0D DA $...;...Rich:...</p>
+                    <p>000000D0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................</p>
+                    <p>000000E0: 00 00 00 00 00 00 00 00 50 45 00 00 4C 01 04 00 ........PE..L...</p>
+                    <p>000000F0: 3F 9B D1 4D 00 00 00 00 00 00 00 00 E0 00 02 01 ?..M............</p>
+                </div>
+            </div>
+
+            <div class="ui top blue icon message" id="pstreeimg">
+                <div class="ui large header"><i class="info icon"></i>PS树状图</div>
+            </div>
+            <div class="list" id="container">
+                <img class="ui fluid image" src="../static/img/detail_pic/pstree.png">
+            </div>
+
+            {#子标题#}
+            <div class="ui top blue icon message" id="injecttableinfo">
+                <div class="ui large header"><i class="info icon"></i>关键注册表信息</div>
+            </div>
+            {#内容#}
+            <div class="list" id="container">
+                <table class="ui table center aligned" id="baseinfo_table">
+                    <thead>
+                    <tr>
+                        <td>
+                            <div id="font-set"><b>注册表内容</b></div>
+                        </td>
+                        <td>
+                            <div id="font-set"><b>注册表项名称</b></div>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>"C:\Foxmail 7.2\Foxmail.exe" -min</td>
+                        <td>Foxmail</td>
+                    </tr>
+                    <tr>
+                        <td>C:\Users\float\AppData\Roaming\Figggl.exe</td>
+                        <td>Figggl</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            {#子标题#}
+            <div class="ui top blue icon message" id="netbehaviinfo">
+                <div class="ui large header"><i class="info icon"></i>网络行为信息</div>
+            </div>
+            {#二级子标题#}
+            <div class="ui top  teal icon message">
+                <div class="ui middle header"><i class="info icon"></i>网络连接情况</div>
+            </div>
+            {#内容#}
+            <div class="list" id="container">
+                <table class="ui table center aligned" id="baseinfo_table">
+                    <thead>
+                    <tr>
+                        <td>
+                            <div id="font-set"><b>PID</b></div>
+                        </td>
+                        <td>
+                            <div id="font-set"><b>本地地址</b></div>
+                        </td>
+                        <td>
+                            <div id="font-set"><b>本地端口</b></div>
+                        </td>
+                        <td>
+                            <div id="font-set"><b>协议类型</b></div>
+                        </td>
+                        <td>
+                            <div id="font-set"><b>远程地址</b></div>
+                        </td>
+                        <td>
+                            <div id="font-set"><b>远程端口</b></div>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1196</td>
+                        <td>10.10.10.26</td>
+                        <td>49350</td>
+                        <td>TCPv4</td>
+                        <td>13.249.165.32</td>
+                        <td>443</td>
+                    </tr>
+                    <tr>
+                        <td>1196</td>
+                        <td>10.10.10.26</td>
+                        <td>49346</td>
+                        <td>TCPv4</td>
+                        <td>13.225.163.119</td>
+                        <td>443</td>
+                    </tr>
+                    <tr>
+                        <td>1196</td>
+                        <td>10.10.10.26</td>
+                        <td>49358</td>
+                        <td>TCPv4</td>
+                        <td>13.225.163.92</td>
+                        <td>443</td>
+                    </tr>
+                    <tr>
+                        <td>1196</td>
+                        <td>10.10.10.26</td>
+                        <td>49341</td>
+                        <td>TCPv4</td>
+                        <td>13.249.165.9</td>
+                        <td>443</td>
+                    </tr>
+                    <tr>
+                        <td>1196</td>
+                        <td>Unknown</td>
+                        <td>49289</td>
+                        <td>TCPv4</td>
+                        <td>23.37.124.72</td>
+                        <td>80</td>
+                    </tr>
+                    <tr>
+                        <td>2180</td>
+                        <td>10.10.10.26</td>
+                        <td>49306</td>
+                        <td>TCPv4</td>
+                        <td>212.83.168.196</td>
+                        <td>80</td>
+                    </tr>
+                    <tr>
+                        <td>2672</td>
+                        <td>127.0.0.1</td>
+                        <td>49277</td>
+                        <td>TCPv4</td>
+                        <td>127.0.0.1</td>
+                        <td>80</td>
+                    </tr>
+                    <tr>
+                        <td>2180</td>
+                        <td>Unknown</td>
+                        <td>0</td>
+                        <td>TCPv4</td>
+                        <td>104.0.25.2</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>2180</td>
+                        <td>10.10.10.26</td>
+                        <td>49336</td>
+                        <td>TCPv4</td>
+                        <td>199.2.137.21</td>
+                        <td>1863</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            {#二级子标题#}
+            <div class="ui top  teal icon message">
+                <div class="ui middle header"><i class="info icon"></i>域名及DGA域名判断</div>
+            </div>
+            {#内容#}
+            <div class="list" id="container">
+                <table class="ui table center aligned" id="baseinfo_table">
+                    <thead>
+                    <tr>
+                        <td>
+                            <div id="font-set"><b>可疑IP域名查询</b></div>
+                        </td>
+                        <td>
+                            <div id="font-set"><b>创建时间</b></div>
+                        </td>
+                        <td>
+                            <div id="font-set"><b>恶意软件家族</b></div>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>bar-espanol-labodega-shibuya.com</td>
+                        <td>2023-03-23 06:59:29</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>lebeurrenoisettetokyo.com</td>
+                        <td>2023-03-25 15:50:47</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>bidsstalk.com</td>
+                        <td>2023-04-03 02:07:01</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>eang.it</td>
+                        <td>2023-03-26 03:14:21</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>sandbox-saloniris.com</td>
+                        <td>2023-03-20 02:39:35</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>protect-my-privacy.org</td>
+                        <td>2023-04-02 02:14:03</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>arajinn.site</td>
+                        <td>2023-03-24 05:51:17</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>x3628929.ivps9x.u.avast.com</td>
+                        <td>2023-03-30 16:59:58</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>j8287141.ivps9x.u.avast.com</td>
+                        <td>2023-03-30 16:59:57</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>imagec07.247realmedia.com</td>
+                        <td>2023-03-17 21:26:02</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>static.inviziads.com</td>
+                        <td>2023-04-02 21:04:35</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>www.recommendation.world</td>
+                        <td>2023-03-30 15:40:21</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>api.initialoptimizer.com</td>
+                        <td>2023-04-03 20:27:20</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>config.unityads.unity3d.com</td>
+                        <td>2023-03-30 11:17:42</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>imagec16.247realmedia.com</td>
+                        <td>2023-03-30 21:19:49</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>ucarecdn.com</td>
+                        <td>2023-04-02 21:04:42</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>search.expandedkey.com</td>
+                        <td>2023-04-01 22:39:53</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>api.wipmania.com</td>
+                        <td>2023-04-13 14:57:55</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>api8.wipmania.com</td>
+                        <td>2023-01-11 13:53:56</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>api7.wipmania.com</td>
+                        <td>2023-01-11 13:53:54</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>www.wipmania.com</td>
+                        <td>2019-11-04 20:13:46</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>alrond.com</td>
+                        <td>2019-12-13 17:46:13</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>napi1.wipmania.com</td>
+                        <td>2019-09-06 16:51:55</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>kvnforall.info</td>
+                        <td>2019-08-06 06:32:45</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>www.kvnforall.info</td>
+                        <td>2019-12-11 16:53:30</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>wipmania.com</td>
+                        <td>2019-12-13 11:25:18</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>api2.wipmania.com</td>
+                        <td>2019-09-25 02:03:38</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>api2.wipmania.com</td>
+                        <td>2019-09-25 02:03:38</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>www.pluto.iziger.pl</td>
+                        <td>2023-02-22 00:37:16</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>www.blueverse.kz</td>
+                        <td>2019-12-28 14:23:37</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>www.xxxd1.com</td>
+                        <td>2019-12-28 11:21:34</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>www.xp54823.com</td>
+                        <td>2019-12-28 11:19:34</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>mail.retk03.com</td>
+                        <td>2023-02-22 21:58:26</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>mail.n1rx.asia</td>
+                        <td>2023-02-11 21:17:29</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>ftp.zuf174.com</td>
+                        <td>2023-01-14 10:35:11</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>www.cantvenlinea.biz</td>
+                        <td>2023-02-22 11:45:46</td>
+                        <td>无结果</td>
+                    </tr>
+                    <tr>
+                        <td>webmail.pissa.org</td>
+                        <td>2019-12-28 12:35:48</td>
+                        <td>无结果</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="ui horizontal divider" id="resultinfo"><i class="info icon"></i>综合和分析</div>
+            <div class="list" id="container">
+                <div class="ui piled segment">
+                    <h4 class="ui header">综合分析结果</h4>
+                    <p>经过系统分析，待检材料<b style="color: red">{{ taskdic['host'] }}_{{ taskdic['finishtime'] }}</b>中
+                        {% if taskdic['type'] %}存在{% else %}不存在{% endif %}节点信息恶意软件痕迹。{% if taskdic['type'] %}
+                            经检测，恶意进程ID如下：<b
+                                    style="color: red">3488,
+                                2180, 488, 1196, 1836, 2672, 2808, 2428</b>，分析人员需要重点关注这些恶意进程的命令行执行信息、DLL相关信息、
+                            DLL加载函数以及虚拟地址描述符详细信息。同时本产品提供恶意进程的调用信息，
+                            分析人员可快速把握恶意进程的调用关系。本产品已将恶意进程以可执行文件的形式导出至本地，{% endif %}
+                        分析人员可以在路径<b style="color: red">/MalProcessResult/{{ taskdic['host'] }}_{{ taskdic['finishtime'] }}</b>下根据需求自行分析查看。
+                        {% if taskdic['type'] %}此外，经检测，该恶意软件存在相关网络活动。{% endif %}</p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <script>
+        $('.ui.sticky').sticky({
+            offset: 40, // 距离顶部的偏移量，单位为像素
+        });
+        $('.ui.dropdown').dropdown();
+    </script>
+
+{% endblock %}

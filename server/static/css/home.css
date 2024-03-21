@@ -1,0 +1,39 @@
+#wrapper {
+    /*background-image: url(../img/loginbk.png);*/
+    margin-top: 0rem;
+    margin-left: 10rem;
+    margin-right: 10rem;
+}
+
+#baseinfo_table {
+    width: 70%; /* 设置表格宽度为100% */
+    border: 2px solid black; /* 设置单元格的边框粗细和颜色 */
+}
+
+
+#font-set {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Times New Roman", Times, serif;
+    font-size: medium;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+td, th {
+    border: 2px solid black; /* 设置单元格的边框粗细和颜色 */
+}
+
+#nodeinfo-container {
+}
+
+#node-text {
+    float: left;
+    width: 50%; /* 设置表格宽度为100% */
+    height: 600px;
+}
