@@ -1,2 +1,21 @@
 # 内存取证分析系统
 
+
+![登录界面截图](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/a61726de-ea52-4bbb-87b2-20abc1f94587)
+![创建新的取证任务](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/74a95221-9f8b-4536-955f-7ef5f76881d4)
+![点击下载不同的客户端](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/c06ebe29-1a97-4820-b673-253a83920730)
+![分析与检测结果数据库截图](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/e18d93ba-6bcb-4039-83f7-d26230019df0)
+![内存详细信息-磁盘信息](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/38b99a63-3d9f-44ef-a594-c5e063c8ca2c)
+![内存详细信息-任务进程](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/f1d0995c-c98c-48c6-98ba-081ab1cb8b5d)
+![内存详细信息-网络状态](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/8d372e64-ec62-40a1-aef9-722e1ff4105e)
+![内存详细信息-账户信息](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/5088278e-5a83-4496-acf4-dff98ef00d62)
+![下载pdf文档](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/48849240-76c1-43d7-9697-cd5cfc495ab9)
+![下载pdf文档1](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/bf2d6f2a-bc08-4861-a33f-df9e13d2251c)
+![下载pdf文档2](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/db4a19a6-49eb-444a-acbe-960e65c0247c)
+![下载pdf文档3](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/228cc79a-adb4-4441-a43f-164712507a6c)
+![详细信息-DGA域名分析结果](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/47f28e45-b2fb-4fe9-867a-38fc2ae51993)
+![详细信息-ps树状图](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/6608a7f8-0997-4a8d-8c60-e9fb92834715)
+![详细信息-恶意进程](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/01bc1ad4-638b-4219-998c-db1c898f0c9a)
+![详细信息-加载函数恶意节点](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/51e5f9df-ed3f-4652-bad2-18fd925623d0)
+![在线主机列表](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/9f70b28f-8a88-4a59-aa19-72b8a364f210)
+![执行分析结果](https://github.com/guangjunge/Memory-forensic-analysis-system/assets/47780329/207af522-4977-4b5f-9d4c-a5ee49c6f745)
